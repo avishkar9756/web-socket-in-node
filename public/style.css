@@ -16,12 +16,16 @@ input, button {
     border-radius: 3px;
 }
 
-button {
+#sendBtn {
     background-color: #007bff;
     color: white;
     cursor: pointer;
 }
-
+#clearBtn{
+    background-color: #f50606;
+    color: white;
+    cursor: pointer;
+}
 button:disabled {
     background-color: #ccc;
     cursor: not-allowed;

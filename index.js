@@ -13,12 +13,25 @@ const server = http.createServer(app);
 
 const io = new Server(server);
 
+
 io.on("connection", (socket) => {
   let data_recieved=[];
   let maxi=-1e9;
   let numberofRequest=0;
+
   socket.on("client-message", (client) => {
+    const deleteentries=async ()=>{
+      await entry.deleteMany({});
+      data_recieved=[];
+      maxi=-1e9;
+      // io.emit('server-message','Entries Deleted');
+    }
     
+    if(client==='clear'){
+deleteentries();
+    }
+    
+    else{
     let data = parseInt(client.message);
     let apiKey = client.key;
     //////////////////////
@@ -65,8 +78,9 @@ const getEntries= async ()=>{
     } else {
       io.emit("server-message", "unauthorised");
     }
-
+  }
   });
+
 });
 
 app.use(express.static(path.resolve("./public")));
