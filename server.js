@@ -37,7 +37,6 @@ io.on("connection", (socket) => {
 const getEntries= async ()=>{
 
   const allentries= await entry.find();
-  console.log(allentries);
 
   if(allentries){
    
